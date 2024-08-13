@@ -1,0 +1,41 @@
+services:
+    frontend:
+        build:
+            context: .
+            dockerfile: Dockerfile_frontend
+        image: myquenum/vue
+        ports:
+          - '5173:80'
+        depends_on:
+          - backend
+    backend:
+        build:
+            context: .
+            dockerfile: Dockerfile_backend
+        image: myquenum/laravel
+        ports:
+          - '8000:8000'
+        networks:
+            - laravel_vue_mysql
+        depends_on:
+            - db
+    db:
+        image: 'mysql'
+        restart: always
+        ports:
+            - '3307:3306'
+        volumes:
+            - dbdata:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+        networks:
+            - laravel_vue_mysql
+networks:
+    laravel_vue_mysql:
+        driver: bridge
+volumes:
+    dbdata:
