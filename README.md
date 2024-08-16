@@ -196,3 +196,4 @@ Here is an example
 docker run --name my_vue_container -d -p 8081:8081 my_nuxt_app
 ```
 
+
