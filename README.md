@@ -112,7 +112,7 @@ Here is an example
 docker run --name my_vue_container -d -p 3000:3000 my_nuxt_app
 ```
 
-### Next JS (Nuxt folder)
+### Next JS (next folder)
 
 
 <center>
@@ -140,6 +140,59 @@ Here is an example
 docker run --name my_vue_container -d -p 3000:3000 my_nuxt_app
 ```
 
+### React native (react-native folder)
 
 
+<center>
+<img src="https://miro.medium.com/v2/resize:fit:650/1*DofdLH9enWUHwvs3Qmpg2w.jpeg" />
+</center>
+
+
+Create a next project by running:
+
+```
+npx create-next-app@latest <project-name>
+```
+
+Copy the Dockerfile located at './next/Dockerfile' and place it at the root of your vue project. Run :
+
+```
+docker build -t <image-tag> . 
+```
+
+Now run the image with docker run. 
+
+Here is an example
+
+```
+docker run --name my_vue_container -d -p 3000:3000 my_nuxt_app
+```
+
+### React native (Nuxt folder)
+
+
+<center>
+<img src="https://miro.medium.com/v2/resize:fit:1200/1*y6C4nSvy2Woe0m7bWEn4BA.png" />
+</center>
+
+
+Create a react native project with Expo by running:
+
+```
+npx create-expo-app@latest <project-name>
+```
+
+Copy the Dockerfile located at './react_native/Dockerfile' and place it at the root of your vue project. Run :
+
+```
+docker build -t <image-tag> . 
+```
+
+Now run the image with docker run. 
+
+Here is an example
+
+```
+docker run --name my_vue_container -d -p 8081:8081 my_nuxt_app
+```
 
