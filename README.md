@@ -92,7 +92,7 @@ docker run --name my_vue_container -d -p 5173:5173 my_react_app
 </center>
 
 
-Create a nux project by running:
+Create a nuxt project by running:
 
 ```
 npx nuxi@latest init <project-name>
@@ -109,7 +109,35 @@ Now run the image with docker run.
 Here is an example
 
 ```
-docker run --name my_vue_container -d -p 5173:5173 my_react_app
+docker run --name my_vue_container -d -p 3000:3000 my_nuxt_app
+```
+
+### Next JS (Nuxt folder)
+
+
+<center>
+<img src="https://miro.medium.com/v2/resize:fit:650/1*DofdLH9enWUHwvs3Qmpg2w.jpeg" />
+</center>
+
+
+Create a next project by running:
+
+```
+npx create-next-app@latest <project-name>
+```
+
+Copy the Dockerfile located at './Nuxt/Dockerfile' and place it at the root of your vue project. Run :
+
+```
+docker build -t <image-tag> . 
+```
+
+Now run the image with docker run. 
+
+Here is an example
+
+```
+docker run --name my_vue_container -d -p 3000:3000 my_nuxt_app
 ```
 
 

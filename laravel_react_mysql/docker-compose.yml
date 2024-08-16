@@ -1,0 +1,38 @@
+services:
+    frontend:
+        build:
+            context: .
+            dockerfile: Dockerfile_frontend
+        image: myquenum/vue
+        ports:
+          - '5173:80'
+        depends_on:
+          - backend
+    backend:
+        build:
+            context: .
+            dockerfile: Dockerfile_backend
+        image: myquenum/laravel
+        ports:
+          - '8000:8000'
+        networks:
+            - laravel_reat_mongo
+        depends_on:
+            - db
+    db:
+        image: 'mongo'
+        restart: always
+        ports:
+            - '27017:27017'
+        volumes:
+            - dbdata:/data/db
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: '${DB_USERNAME}'
+            MONGO_INITDB_ROOT_PASSWORD: '${DB_PASSWORD}'
+        networks:
+            - laravel_reat_mongo
+networks:
+    laravel_reat_mongo:
+        driver: bridge
+volumes:
+    dbdata:
